@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+            .container-box{
+             margin:5% 20% 20% 20%;
+            padding:5px;
+            border:2px solid black;
+            border-radius: 5%;
+            width:fit-content;
+            background-color:aliceblue;
+            box-shadow:5px 10px black;
+        }
+        .container{
+            margin:3px;
+            padding:3px;
+            border:2px solid black;
+        }
+        #Screen{
+            width:98%;
+            display: block;
+        }
+        .container-flex{
+            
+            margin:3px;
+            padding:2px;
+            border:2px solid black;
+            display:flex;
+            justify-content: space-between;
+        }
+        .btn{
+            padding:5px 10px 5px 10px;
+            margin:1px;
+            background-color:beige;
+            color:black;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .btn-operation{
+            padding:5px 10px 5px 10px;
+            margin:1px 1px 0px 1px;
+            background-color:dimgrey;
+            color:aqua;   
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .btn-equal{
+            padding:5px 10px 5px 10px;
+            margin:1px;
+            background-color:rgb(15, 252, 7);
+            color:black;   
+            font-weight:bolder;  
+            cursor: pointer;
+        }
+        .btn-del{
+            padding:5px 7px 5px 7px;
+            margin:1px;
+            background-color:red;
+            color:white;  
+            font-weight: 900; 
+            cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+    <center>
+        <div class="container-box">
+            <div class="container">
+                <textarea id="Screen" placeholder="Enter  an Expression" rows="5" style="resize:none" disabled>
+                </textarea>
+            </div>
+            <div class="container-flex">
+                <button class="btn-operation" onclick="CE()">CE</button>
+                <button class="btn-operation" onclick="N('**')">^</button>
+                <button class="btn-operation" onclick="N('%')">Mod</button>
+                <button class="btn-del" onclick="DEL()">DEL</button><br>
+            </div>
+            <div class="container-flex">
+                <button class="btn" onclick="N(7)">7</button>
+                <button class="btn" onclick="N(8)">8</button>
+                <button class="btn" onclick="N(9)">9</button>
+                <button class="btn-operation" onclick="N('+')">+</button>
+            </div>
+                <div class="container-flex">
+                <button class="btn" onclick="N(4)">4</button>
+                <button class="btn" onclick="N(5)">5</button>
+                <button class="btn" onclick="N(6)">6</button>
+                <button class="btn-operation" onclick="N('-')">-</button><br>
+                </div>
+                <div class="container-flex">
+                    <button class="btn" onclick="N(1)">1</button>
+                    <button class="btn" onclick="N(2)">2</button>
+                    <button class="btn" onclick="N(3)">3</button>
+                    <button class="btn-operation" onclick="N('*')">*</button><br>
+                </div>
+                <div class="container-flex">
+                    <button class="btn" onclick="N('.')">.</button>
+                    <button class="btn" onclick="N(0)">0</button>
+                    <button class="btn-operation" onclick="N('/')">/</button>
+                    <buttonn class="btn-equal" onclick="Res()"><strong>=</strong></button><br>
+                </div>
+        </div>
+    </center>
+
+     <script>
+        var scr=document.getElementById("Screen");
+        scr.value="";
+        function CE(){
+            scr.value="";
+        }
+        function N(val){
+            var scrPreVal=scr.value;
+            if(scrPreVal.length==0 &&(val==='*'||val==='/'||val==='%'||val==='**')){
+                scr.value="";
+                return;
+            }
+            if((val==='+'||val==='-'||val==='*'||val==='/'||val==='%'||val==='**') && (scrPreVal.slice(-1)==='+'||scrPreVal.slice(-1)==='-'||scrPreVal.slice(-1)==='*'||scrPreVal.slice(-1)==='/'||scrPreVal.slice(-1)==='%'||scrPreVal.slice(-1)==='**')){
+                
+               scrPreVal= scrPreVal.trim();
+                let arr=scrPreVal.split('');
+                arr.pop();
+                let Nstr=arr.toString();
+                Nstr=Nstr.replace(/,/g,'');
+                if(Nstr.length==0 &&(val==='*'||val==='/'||val==='%'||val==='**')){
+                scr.value=scrPreVal;
+                return;
+            }
+                scr.value=Nstr+val;
+            }
+            else{
+            scr.value=scrPreVal+val;
+            }
+        }
+        function Res(){
+            let exp=scr.value;
+            if(exp.length==0){
+                exp=exp;
+                return;
+            }
+            if (exp.slice(-1)==="*"||exp.slice(-1)==="-"||exp.slice(-1)==="+"||exp.slice(-1)==="/"){
+                scr.value=`${exp}
+                
+                            invalid format used.!!`;
+            }
+            /*else if(isNaN(exp)){
+                scr.value=`Enter a number!!!!!!!!`;
+            }*/
+            else{
+            scr.value=`${exp}
+
+                        ${eval(exp)}`;
+            }
+        }
+        function DEL(){
+            let exp=scr.value;
+            exp=exp.split("");
+            exp.pop();
+            exp=exp.toString();
+            exp=exp.replace(/,/g,'');
+            scr.value=exp;
+        }
+
+     </script>
+</body>
+</html>
