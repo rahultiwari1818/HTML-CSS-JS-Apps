@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Scripting</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="C:\Users\TIWARIS\Desktop\bootsrap\bootstrap-4.0.0-dist\css\bootstrap.min.css">
+</head>
+<body id="gradient">
+<div class="container border border-dark  mt-3 ">
+<div class="mx-auto p-5 ">
+<h1 class="display-h1">TO-DO List</h1>
+<textarea placeholder="Enter Task:" class="form-input" id="input" cols="40" rows="5" style="resize:none;"></textarea><br>
+<button id="btn" class="btn btn-primary mt-2">ADD</button>
+</div>
+<div class="p-3">
+	<h2  class ="justify-content-center" id="EmptyMess">Please add items In your ToDos</h2>
+<ul>
+	
+</ul>
+
+</div>
+</div>
+<div class="container border p-5 mt-3">
+<h2 style="text-align:center;">CSS Background Generator</h2>
+<input type="color" name="color1" id="color1" value="#00ff00">
+<input type="color" name="color2" id="color2" value="#ff0000">
+<h3></h3>
+</div>
+
+
+			<script>
+			var input=document.getElementById("input");
+			var btn=document.getElementById("btn");
+			var ul=document.querySelector("ul");
+			var li;
+			var  cross;
+			var done;
+			function addItem(){
+				if(ul.children.length<1 && input.value.length>0){
+					let x=document.getElementById("EmptyMess");
+					x.remove();
+				}
+				if(input.value.length>0){
+				li=document.createElement("li");
+				li.className="list-group-item d-flex justify-content-between";
+				li.innerHTML=`<h5 class="flex-grow-1">${input.value}</h5>
+				<button class="btn btn-warning mx-5" onclick="EditElement(this)">Edit</button>
+				<button class="btn btn-danger" onclick="DeleteElement(this)">Delete</button>
+				`;
+				ul.appendChild(li);
+				input.value="";
+
+				}
+			}
+			function DeleteElement(curr){
+				curr.parentElement.remove();
+				if(ul.children.length<1){
+					ul.innerHTML=`
+						<h2 class="justify-content-center" id="EmptyMess">Please add items In your ToDos</h2>`;
+				}
+			}
+			function EditElement(curr){
+				if(curr.textContent==="Done"){
+					curr.textContent="Edit";
+					let currTask=curr.previousElementSibling.value;
+					let currHeading=document.createElement("h5");
+					currHeading.className="flex-grow-1";
+					currHeading.textContent=currTask;
+					curr.parentElement.replaceChild(currHeading,curr.previousElementSibling);
+					curr.className="btn-warning";
+				}
+				else{
+					curr.textContent="Done";
+				curr.className="btn-success";
+				let currTask=curr.previousElementSibling.textContent;
+				let currInput=document.createElement("input");
+				currInput.className="inline-form";
+				currInput.placeholder="Enter something";
+				currInput.value=currTask;
+				//curr.parentElement.appendChild(Input);
+				curr.parentElement.replaceChild(currInput,curr.previousElementSibling);
+				}
+			}
+			
+			function addIT(event){
+				if(input.value.length>0&&event.keyCode===13){
+				addItem();
+				return;
+			}
+			}
+
+			btn.addEventListener('click',addItem);
+			input.addEventListener("keypress",addIT);
+
+			//-----------------------------------------------------------------------------------------------
+			//gradient code
+
+			var body=document.getElementById("gradient");
+			var color1=document.getElementById("color1");
+			var color2=document.getElementById("color2");
+			var css=document.querySelector("h3");
+
+			function setGradient(){
+				body.style.background="linear-gradient(to right,"+ color1.value +", "+ color2.value +")";
+				css.textContent=body.style.background+";";
+			}
+			color1.addEventListener("input",setGradient);
+			color2.addEventListener("input",setGradient);
+			</script>
+</body>
+</html>
