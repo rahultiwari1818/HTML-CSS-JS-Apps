@@ -19,12 +19,6 @@
 
 </div>
 </div>
-<div class="container border p-5 mt-3">
-<h2 style="text-align:center;">CSS Background Generator</h2>
-<input type="color" name="color1" id="color1" value="#00ff00">
-<input type="color" name="color2" id="color2" value="#ff0000">
-<h3></h3>
-</div>
 
 
 			<script>
@@ -92,19 +86,6 @@
 			input.addEventListener("keypress",addIT);
 
 			//-----------------------------------------------------------------------------------------------
-			//gradient code
-
-			var body=document.getElementById("gradient");
-			var color1=document.getElementById("color1");
-			var color2=document.getElementById("color2");
-			var css=document.querySelector("h3");
-
-			function setGradient(){
-				body.style.background="linear-gradient(to right,"+ color1.value +", "+ color2.value +")";
-				css.textContent=body.style.background+";";
-			}
-			color1.addEventListener("input",setGradient);
-			color2.addEventListener("input",setGradient);
-			</script>
+			
 </body>
 </html>
