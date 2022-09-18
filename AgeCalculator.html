@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Age Calculator</title>
+</head>
+<style>
+	.cont{
+		margin:auto;
+		padding: 10% 10% 10% 10%;
+		border: 2px solid black;
+		width: 40%;
+	}
+	.btn{
+		margin: 20px;
+		padding: 10px;
+		background-color: aqua;
+		color:black;
+		border-radius: 16px;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div class="cont">
+		<input type="date" name="dt" id="date" required><br>
+		<button class="btn" onclick="getage()">get age</button>
+		<br>
+		<input type="text" id="ans" readonly>
+	</div>
+<p id="para"></p>
+<script>
+	function getage(){
+	let x=document.getElementById("para");
+	let d=document.getElementById("date").value;
+	let ans=document.getElementById("ans");
+	d=new Date(d);
+	let currentDate=new Date();
+	let year=currentDate.getFullYear()-d.getFullYear();
+	let mon=currentDate.getMonth()-d.getMonth();
+	let days=currentDate.getDate()-d.getDate();
+	if(d=="Invalid Date"){
+		ans.value='';
+	}
+	else{
+		if (days<0){
+			mon-=1;
+			days+=30
+		}
+		if (mon<0){
+			year-=1;
+			mon=12+mon;
+		}
+		ans.value=`${year} years and ${mon} months ${days} days`;
+	}
+	}
+</script>
+</body>
+
+</html>
