@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        background: radial-gradient(grey,black);
+      }
+      .container{
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        border: 2px solid #fff;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        width: fit-content;
+        font-family: cursive;
+        color: #fff;
+        font-size: 50px;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="txt"></h1>
+  </div>
+  <script>
+    var cur=new Date()
+    sec=cur.getSeconds();
+    min=cur.getMinutes();
+    hour=cur.getHours();
+    const time=()=>{
+      sec=parseInt(sec);
+      min=parseInt(min);
+      hour=parseInt(hour);
+      sec+=1;
+      if (sec>59){
+        sec=00;
+        min+=1;
+        if (min>59){
+          min=00;
+          hour+=1;
+          if (hour>24){
+            hour=00;
+          }
+        }
+      }
+      cur.setSeconds(sec);
+      cur.setMinutes(min);
+      cur.setHours(hour);
+      if (min<10){
+        min='0'+min;
+      }
+      if( sec<10){
+        sec='0'+sec;
+      }
+      if (hour<10){
+        hour='0'+hour;
+      }
+      str=`${hour}:${min}:${sec}`;
+      txt.innerHTML=str;
+    }
+    setInterval(time,1000);
+
+  </script>
+</body>
+</html>
