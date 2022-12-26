@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-repeat: no-repeat;
+            background: linear-gradient(rgb(5, 227, 247),blue);
+            background-attachment: fixed;
+        }
+        .container{
+            margin: auto;
+            border: 2px solid black;
+            width:50%;
+            padding: 20px;
+        }
+        .container-inside{
+            margin: 5px;
+            padding: 10px;
+            font-size: large;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 900;
+        }
+        .btn{
+            padding: 10px;
+            margin: 2px;
+            outline: 2px solid red;
+            cursor: pointer;
+            border: none;
+            background-color: #fff;
+            color: red;
+            
+        }
+        .btn:hover{
+            box-shadow: 7px 5px #fff;
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="btn" onclick="TellMeAJoke()">Tell Me a Joke</button>
+        <div class="container-inside">
+            <h4 id="Joke"></h4>
+        </div>
+    </div>
+    <script>
+        const TellMeAJoke=()=>{
+            const Rand=(min,max)=>{
+                return Math.floor(Math.random()*(max-min))+min;
+            }
+            let JokeArray=[`Knock! Knock!
+Who’s there?
+Control Freak.
+Con…
+OK, now you say, “Control Freak who?” `,
+`Hear about the new restaurant called Karma?
+There’s no menu: You get what you deserve.`,`A woman in labor suddenly shouted, “Shouldn’t! Wouldn’t! Couldn’t! Didn’t! Can’t!”
+“Don’t worry,” said the doc. “Those are just contractions.”`,`A bear walks into a bar and says, “Give me a whiskey and … cola.”
+“Why the big pause?” asks the bartender. The bear shrugged. “I’m not sure; I was born with them.”`,`Did you hear about the actor who fell through the floorboards?
+He was just going through a stage`,`Did you hear about the claustrophobic astronaut?
+He just needed a little space.`,`Why don’t scientists trust atoms?
+Because they make up everything.`,`Why did the chicken go to the séance?
+To get to the other side. Check out these other “why did the chicken cross the road?” jokes for more laughs`,`Where are average things manufactured?
+The satisfactory.`,`How do you drown a hipster?
+Throw him in the mainstream`];
+            Joke.innerHTML=`"    ${JokeArray[Rand(0,JokeArray.length-1)]}   "`;
+        }
+
+    </script>
+</body>
+</html>
