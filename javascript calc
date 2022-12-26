@@ -121,10 +121,17 @@
             if((val==='+'||val==='-'||val==='*'||val==='/'||val==='%'||val==='**') && (scrPreVal.slice(-1)==='+'||scrPreVal.slice(-1)==='-'||scrPreVal.slice(-1)==='*'||scrPreVal.slice(-1)==='/'||scrPreVal.slice(-1)==='%'||scrPreVal.slice(-1)==='**')){
                 
                scrPreVal= scrPreVal.trim();
-                let arr=scrPreVal.split('');
+               
+                // complex method to do slicing
+            
+                /* let arr=scrPreVal.split('');
                 arr.pop();
                 let Nstr=arr.toString();
-                Nstr=Nstr.replace(/,/g,'');
+                Nstr=Nstr.replace(/,/g,''); */
+                
+                // Preferred way 
+                
+                let Nstr = scrPreVal.slice(0,-1);
                 if(Nstr.length==0 &&(val==='*'||val==='/'||val==='%'||val==='**')){
                 scr.value=scrPreVal;
                 return;
@@ -157,10 +164,16 @@
         }
         function DEL(){
             let exp=scr.value;
-            exp=exp.split("");
+            // complex method to do slicing
+            
+           /* exp=exp.split("");
             exp.pop();
             exp=exp.toString();
-            exp=exp.replace(/,/g,'');
+            exp=exp.replace(/,/g,'');  */
+            
+           // preferred way 
+           
+            exp = exp.slice(0,-1);
             scr.value=exp;
         }
 
