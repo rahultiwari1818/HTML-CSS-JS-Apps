@@ -4,32 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Digital Clock</title>
+    <!--Styling code for our Digital Clock-->
     <style>
-      body{
-        background: radial-gradient(grey,black);
-      }
-      .container{
-        margin: auto;
-        margin-top: 5%;
-        margin-bottom: 5%;
-        border: 2px solid #fff;
-        align-content: center;
-        align-items: center;
-        text-align: center;
-        width: fit-content;
-        font-family: cursive;
-        color: #fff;
-        font-size: 50px;
-      }
+        body{
+  background: radial-gradient(grey,black);
+}
+.container{
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 5rem;
+  border: 2px solid #fff;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90vw;
+}
+.clock{
+  margin: auto;
+  display: flex;
+}
+.time{
+  width: 20vw;
+  margin: auto;
+  gap: 5rem;
+  padding: 5rem;
+  border:2px solid white;
+  font-family: cursive;
+  color: radial-gradient(aqua,darkblue);
+  font-size: 3rem;
+}
+.calander{
+  margin-top: 2rem;
+  margin: auto;
+  display: flex;
+}
+.calander-date{
+  width: 20vw;
+  margin: auto;
+  gap: 3rem;
+  padding: 1rem;
+  border:2px solid white;
+  font-family: cursive;
+  color: radial-gradient(aqua,darkblue);
+  font-size: 2rem;
+}
     </style>
 </head>
 <body>
   <div class="container">
-    <h1 id="txt"></h1>
+	<div class="clock">
+		<div class="time" id="hour">
+			<h2>Hours:</h2>
+			<h1></h1>
+		</div>
+		<div class="time" id="min">
+			<h2>Minutes:</h2>
+			<h1></h1>
+		</div>
+		<div class="time" id="sec">
+			<h2>Seconds:</h2>
+			<h1></h1>
+		</div>
+	</div>
+	<div class="calander">
+		<div class="calander-date" id="date">
+			<h1>Date</h1>
+			<h2></h2>
+		</div>
+		<div class="calander-date" id="month">
+			<h1>Month</h1>
+			<h2></h2>
+		</div>
+		<div class="calander-date" id="year">
+			<h1>Year</h1>
+			<h2></h2>
+		</div>
+	</div>
+	
   </div>
+    <!--Script for our Digital Clock-->
   <script>
-    var cur=new Date()
+      var cur=new Date()
     sec=cur.getSeconds();
     min=cur.getMinutes();
     hour=cur.getHours();
@@ -61,10 +118,17 @@
       if (hour<10){
         hour='0'+hour;
       }
-      str=`${hour}:${min}:${sec}`;
-      txt.innerHTML=str;
+      let monthNo = cur.getMonth();
+      let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      document.getElementById("hour").getElementsByTagName("h1")[0].innerHTML=hour;
+      document.getElementById("min").getElementsByTagName("h1")[0].innerHTML=min;
+      document.getElementById("sec").getElementsByTagName("h1")[0].innerHTML=sec;
+      document.getElementById("date").getElementsByTagName("h2")[0].innerHTML=cur.getDate();
+      document.getElementById("month").getElementsByTagName("h2")[0].innerHTML=months[monthNo];
+      document.getElementById("year").getElementsByTagName("h2")[0].innerHTML=cur.getFullYear();
     }
     setInterval(time,1000);
+    console.log(cur)
 
   </script>
 </body>
